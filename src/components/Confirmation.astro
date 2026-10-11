@@ -1,0 +1,183 @@
+---
+const whatsappNumber = ""; // Código de país + número, sin símbolos.
+
+const invitationDate = "24 de octubre de 2026";
+const invitationTime = "6:30 PM";
+const invitationPlace =
+  "Casa Rosa, Km 7 carretera Tulum–Cobá, Tulum, Quintana Roo";
+
+const attendanceMessage = `¡Hola! Confirmo mi asistencia al cumpleaños de Jesús Alexander el ${invitationDate} a las ${invitationTime}. ¡Gracias por la invitación! 🐉`;
+
+const declineMessage = `¡Hola! Muchas gracias por invitarme al cumpleaños de Jesús Alexander. Lamentablemente, no podré asistir. ¡Espero que tenga un cumpleaños increíble! 🎂`;
+
+const attendanceUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(attendanceMessage)}`;
+
+const declineUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(declineMessage)}`;
+---
+
+<section class="confirmation" id="confirmacion">
+  <div class="confirmation__content">
+    <p class="confirmation__eyebrow">EL VIAJE ESTÁ POR COMENZAR</p>
+
+    <h2 class="confirmation__title">¡Te esperamos en Berk!</h2>
+
+    <p class="confirmation__description">
+      Acompáñanos a celebrar los 4 años de Jesús Alexander. ¡Tu presencia hará
+      esta aventura aún más especial!
+    </p>
+
+    <div class="confirmation__actions">
+      <!-- <button
+        class="confirmation__music"
+        id="music-toggle"
+        type="button"
+        aria-pressed="false"
+        aria-label="Activar música"
+      >
+        <span class="confirmation__music-icon" aria-hidden="true">♫</span>
+        <span class="confirmation__music-copy">
+          <strong id="music-label">Activar música</strong>
+          <small id="music-description">
+            Acompaña la aventura con música
+          </small>
+        </span>
+        <span id="music-state" aria-hidden="true">▶</span>
+      </button> -->
+
+      <a
+        class="confirmation__whatsapp"
+        href={attendanceUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span aria-hidden="true">✓</span>
+        <span>¡Sí, asistiré!</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+
+      <a
+        class="confirmation__decline"
+        href={declineUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span aria-hidden="true">×</span>
+        <span>No podré asistir</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <audio id="adventure-music" loop preload="auto">
+      <source src="/audio/aventura.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+</section>
+
+<style>
+  .confirmation {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-width: 0;
+    padding: 4rem 1rem;
+    overflow: clip;
+    background:
+      radial-gradient(ellipse at 50% 0%, #38586a 0%, transparent 55%),
+      linear-gradient(180deg, #203744, #172631 75%);
+    color: #f5f1e8;
+  }
+
+  .confirmation__content {
+    width: 100%;
+    max-width: 30rem;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .confirmation__eyebrow {
+    margin: 0;
+    color: #d9a441;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .confirmation__title {
+    margin: 1rem 0;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: 500;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+
+  .confirmation__description {
+    max-width: 27rem;
+    margin: 0 auto 2rem;
+    color: #d2dce1;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .confirmation__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .confirmation__whatsapp,
+  .confirmation__decline {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
+    min-height: 3.75rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 1rem;
+    font: inherit;
+    font-size: 0.875rem;
+    text-align: left;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+
+  .confirmation__whatsapp {
+    background: #187a51;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .confirmation__decline {
+    background: rgba(255, 0, 0, 0.558);
+    color: #e1e9ed;
+    font-weight: 600;
+  }
+
+  .confirmation__whatsapp:focus-visible,
+  .confirmation__decline:focus-visible {
+    outline: 3px solid #e8bd67;
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 48rem) {
+    .confirmation__actions {
+      gap: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .confirmation__whatsapp {
+      transition: none;
+    }
+  }
+</style>

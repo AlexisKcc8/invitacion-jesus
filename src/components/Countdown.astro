@@ -1,0 +1,78 @@
+<section class="countdown" id="contador">
+  <div class="countdown__stars"></div>
+
+  <div class="countdown__content">
+    <div
+      class="countdown__timer"
+      aria-label="Cuenta regresiva para el cumpleaños"
+    >
+      <div class="countdown__unit p-6">
+        <strong id="days">00</strong>
+        <span>DÍAS</span>
+      </div>
+
+      <div class="countdown__separator">:</div>
+
+      <div class="countdown__unit p-6">
+        <strong id="hours">00</strong>
+        <span>HORAS</span>
+      </div>
+
+      <div class="countdown__separator">:</div>
+
+      <div class="countdown__unit p-6">
+        <strong id="minutes">00</strong>
+        <span>MIN</span>
+      </div>
+
+      <div class="countdown__separator">:</div>
+
+      <div class="countdown__unit p-6">
+        <strong id="seconds">00</strong>
+        <span>SEG</span>
+      </div>
+    </div>
+
+    <p class="text-black mt-8">¡Prepárate para la aventura!</p>
+  </div>
+</section>
+
+<script>
+  const eventDate = new Date("2026-10-24T18:30:00-06:00").getTime();
+
+  const daysElement = document.querySelector("#days");
+  const hoursElement = document.querySelector("#hours");
+  const minutesElement = document.querySelector("#minutes");
+  const secondsElement = document.querySelector("#seconds");
+
+  function updateCountdown() {
+    const now = Date.now();
+    const difference = eventDate - now;
+
+    if (difference <= 0) {
+      daysElement.textContent = "00";
+      hoursElement.textContent = "00";
+      minutesElement.textContent = "00";
+      secondsElement.textContent = "00";
+
+      return;
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+
+    const minutes = Math.floor((difference / (1000 * 60)) % 60);
+
+    const seconds = Math.floor((difference / 1000) % 60);
+
+    daysElement.textContent = String(days).padStart(2, "0");
+    hoursElement.textContent = String(hours).padStart(2, "0");
+    minutesElement.textContent = String(minutes).padStart(2, "0");
+    secondsElement.textContent = String(seconds).padStart(2, "0");
+  }
+
+  updateCountdown();
+
+  setInterval(updateCountdown, 1000);
+</script>

@@ -1,0 +1,188 @@
+<button
+  id="floating-music-toggle"
+  class="music-toggle"
+  type="button"
+  aria-label="Activar música"
+  aria-pressed="false"
+>
+  <span class="music-toggle__icon" aria-hidden="true">♫</span>
+  <span class="music-toggle__label" id="floating-music-label">
+    Activar sonido
+  </span>
+  <span
+    class="music-toggle__equalizer"
+    id="floating-music-bars"
+    aria-hidden="true"
+  >
+    <i></i><i></i><i></i>
+  </span>
+</button>
+
+<audio id="invitation-music" loop preload="auto">
+  <source src="/audio/aventura.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+  const audio = document.querySelector<HTMLAudioElement>("#invitation-music");
+  const button = document.querySelector<HTMLButtonElement>(
+    "#floating-music-toggle",
+  );
+  const label = document.querySelector<HTMLElement>("#floating-music-label");
+  const bars = document.querySelector<HTMLElement>("#floating-music-bars");
+
+  function updateButton(playing: boolean) {
+    if (!button || !label || !bars) return;
+
+    button.setAttribute("aria-pressed", String(playing));
+    button.setAttribute(
+      "aria-label",
+      playing ? "Pausar música" : "Activar música",
+    );
+    label.textContent = playing ? "Pausar música" : "Activar sonido";
+    bars.classList.toggle("is-playing", playing);
+  }
+
+  async function playAudio() {
+    if (!audio) return;
+
+    try {
+      await audio.play();
+      updateButton(true);
+    } catch {
+      updateButton(false);
+    }
+  }
+
+  button?.addEventListener("click", async () => {
+    if (!audio) return;
+
+    if (audio.paused) {
+      await playAudio();
+    } else {
+      audio.pause();
+      updateButton(false);
+    }
+  });
+
+  // Intentar iniciar al cargar; algunos navegadores exigirán un toque.
+  playAudio();
+
+  // Mantener el control sincronizado si cambia el estado del audio.
+  audio?.addEventListener("play", () => updateButton(true));
+  audio?.addEventListener("pause", () => updateButton(false));
+</script>
+
+<style>
+  .music-toggle {
+    position: fixed;
+    z-index: 1000;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+
+    width: auto;
+    max-width: calc(100vw - 2rem);
+    min-height: 3.25rem;
+    padding: 0.7rem 1rem;
+
+    border: 1px solid rgb(217 164 65 / 65%);
+    border-radius: 999px;
+    background: rgb(23 38 49 / 92%);
+    color: #f5f1e8;
+
+    box-shadow:
+      0 8px 24px rgb(12 26 35 / 25%),
+      inset 0 1px 0 rgb(255 255 255 / 10%);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .music-toggle__icon {
+    display: grid;
+    flex: 0 0 2rem;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border-radius: 50%;
+    background: rgb(217 164 65 / 16%);
+    color: #e8bd67;
+    font-size: 1.25rem;
+  }
+
+  .music-toggle__label {
+    white-space: nowrap;
+  }
+
+  .music-toggle__equalizer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    width: 0.8rem;
+    height: 1rem;
+  }
+
+  .music-toggle__equalizer i {
+    display: block;
+    width: 2px;
+    height: 4px;
+    border-radius: 2px;
+    background: #e8bd67;
+  }
+
+  .music-toggle__equalizer.is-playing i {
+    animation: music-wave 700ms ease-in-out infinite alternate;
+  }
+
+  .music-toggle__equalizer.is-playing i:nth-child(2) {
+    animation-delay: 180ms;
+  }
+
+  .music-toggle__equalizer.is-playing i:nth-child(3) {
+    animation-delay: 350ms;
+  }
+
+  .music-toggle:focus-visible {
+    outline: 3px solid #e8bd67;
+    outline-offset: 4px;
+  }
+
+  @media (hover: hover) {
+    .music-toggle:hover {
+      transform: translateY(-2px);
+      border-color: #e8bd67;
+      background: #263d4b;
+    }
+  }
+
+  @keyframes music-wave {
+    from {
+      height: 4px;
+    }
+    to {
+      height: 14px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .music-toggle,
+    .music-toggle__equalizer.is-playing i {
+      animation: none;
+      transition: none;
+    }
+  }
+</style>

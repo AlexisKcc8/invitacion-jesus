@@ -1,0 +1,1440 @@
+@import "tailwindcss";
+
+/* Base global: mobile-first */
+:root {
+  --dragon-sky: #dce8ed;
+  --dragon-cloud: #f5f7f6;
+  --dragon-night: #172631;
+  --dragon-blue: #38586a;
+  --dragon-fire: #e87932;
+  --dragon-gold: #d9a441;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-width: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow-x: clip;
+  background: var(--dragon-sky);
+  color: var(--dragon-night);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   WELCOME
+======================================== */
+
+.welcome {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(circle at 50% 30%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0) 35%),
+    linear-gradient(180deg,
+      #b8ced8 0%,
+      #dce8ed 48%,
+      #edf1ef 100%);
+}
+
+.welcome__content {
+  position: relative;
+  z-index: 10;
+
+  width: min(100% - 2rem, 420px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  padding: 2rem 1rem 3rem;
+}
+
+.welcome__eyebrow {
+  margin: 0;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+
+  color: rgba(23, 38, 49, 0.7);
+
+  animation: welcomeFadeUp 1s ease both;
+}
+
+
+.welcome__name {
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(2.5rem, 11vw, 4.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+
+  color: #172631;
+
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.6);
+
+  animation:
+    welcomeFadeUp 1s 0.35s ease both;
+}
+
+.welcome__age {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+
+  margin: 0.8rem 0 0;
+
+  color: #38586a;
+
+  font-size: 2rem;
+  font-weight: 600;
+
+  animation:
+    welcomeFadeUp 1s 0.5s ease both;
+}
+
+.welcome__age span {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+}
+
+.welcome__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+
+  margin-top: 2.5rem;
+  padding: 0.8rem 1.4rem;
+
+  border: 1px solid rgba(23, 38, 49, 0.25);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  color: #172631;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 250ms ease,
+    background 250ms ease;
+
+  animation:
+    welcomeFadeUp 1s 0.7s ease both;
+}
+
+.welcome__button:hover {
+  transform: translateY(-3px);
+
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.welcome__button span {
+  font-size: 1rem;
+
+  animation: arrowBounce 1.5s ease-in-out infinite;
+}
+
+.welcome__cloud {
+  position: absolute;
+
+  width: 220px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.48);
+
+  filter: blur(8px);
+
+  pointer-events: none;
+}
+
+.welcome__cloud::before,
+.welcome__cloud::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: inherit;
+}
+
+.welcome__cloud::before {
+  width: 110px;
+  height: 110px;
+
+  left: 35px;
+  bottom: 5px;
+}
+
+.welcome__cloud::after {
+  width: 85px;
+  height: 85px;
+
+  right: 30px;
+  bottom: 10px;
+}
+
+.welcome__cloud--one {
+  top: 15%;
+  left: -100px;
+
+  animation: cloudMoveOne 24s linear infinite;
+}
+
+.welcome__cloud--two {
+  top: 30%;
+  right: -120px;
+
+  opacity: 0.55;
+
+  transform: scale(0.8);
+
+  animation: cloudMoveTwo 30s linear infinite;
+}
+
+@keyframes cloudMoveOne {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(100vw + 300px));
+  }
+}
+
+@keyframes cloudMoveTwo {
+  from {
+    transform: translateX(0) scale(0.8);
+  }
+
+  to {
+    transform: translateX(calc(-100vw - 300px)) scale(0.8);
+  }
+}
+
+.welcome__fog {
+  position: absolute;
+
+  bottom: -60px;
+
+  width: 70%;
+  height: 150px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.65);
+
+  filter: blur(25px);
+
+  pointer-events: none;
+}
+
+.welcome__fog--one {
+  left: -20%;
+
+  animation: fogMove 12s ease-in-out infinite alternate;
+}
+
+.welcome__fog--two {
+  right: -20%;
+
+  opacity: 0.7;
+
+  animation:
+    fogMove 16s 2s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes fogMove {
+  from {
+    transform: translateX(-20px);
+  }
+
+  to {
+    transform: translateX(40px);
+  }
+}
+
+@keyframes welcomeFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes arrowBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+
+/* ========================================
+   EVENT DETAILS
+======================================== */
+
+.event {
+  position: relative;
+
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(180deg,
+      #edf1ef 0%,
+      #e3eaeb 45%,
+      #ccdce2 100%);
+}
+
+.event__content {
+  position: relative;
+  z-index: 5;
+
+  width: min(100% - 2rem, 430px);
+
+  padding: 4rem 1.25rem;
+
+  text-align: center;
+}
+
+.event__eyebrow {
+  margin: 0;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+
+  color: rgba(23, 38, 49, 0.6);
+}
+
+/* 3.5 — Encabezado */
+.event__title {
+  max-width: 320px;
+
+  margin: 0.8rem auto 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(2rem, 9vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.05;
+
+  color: #172631;
+}
+
+/* 3.6 — Separador 🐉   */
+.event__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  margin: 1.8rem auto 2.2rem;
+
+  color: #38586a;
+
+  font-size: 1rem;
+}
+
+.event__divider span {
+  width: 55px;
+  height: 1px;
+
+  background: rgba(56, 88, 106, 0.3);
+}
+
+/* 3.7 — Datos del evento */
+.event__details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  text-align: left;
+}
+
+.event__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  border: 1px solid rgba(23, 38, 49, 0.08);
+  border-radius: 1.2rem;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  backdrop-filter: blur(8px);
+}
+
+/* 3.8 — Iconos */
+
+.event__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+
+  flex: 0 0 2.5rem;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.6);
+
+  font-size: 1.1rem;
+}
+
+/* 3.9 — Texto */
+.event__item div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.event__label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+
+  color: rgba(23, 38, 49, 0.5);
+}
+
+.event__item strong {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 2rem;
+  font-weight: 500;
+
+  color: #172631;
+}
+
+.event__item p {
+  margin: 0.2rem 0 0;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+
+  color: rgba(23, 38, 49, 0.7);
+}
+
+/* 3.10 — Botón de Google Maps */
+.event__map {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+
+  width: 100%;
+
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+
+  border-radius: 999px;
+
+  background: #172631;
+
+  color: #fff;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 12px 25px rgba(23, 38, 49, 0.18);
+
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.event__map:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 16px 30px rgba(23, 38, 49, 0.24);
+}
+
+.event__map span:last-child {
+  font-size: 1rem;
+}
+
+/* ☁️ 3.11 — Nubes de esta sección */
+.event__cloud {
+  position: absolute;
+
+  width: 240px;
+  height: 75px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.45);
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
+
+.event__cloud::before,
+.event__cloud::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: inherit;
+}
+
+.event__cloud::before {
+  width: 115px;
+  height: 115px;
+
+  left: 40px;
+  bottom: 5px;
+}
+
+.event__cloud::after {
+  width: 90px;
+  height: 90px;
+
+  right: 35px;
+  bottom: 10px;
+}
+
+.event__cloud--one {
+  top: 8%;
+  left: -130px;
+
+  animation:
+    eventCloudOne 28s linear infinite;
+}
+
+.event__cloud--two {
+  bottom: 12%;
+  right: -140px;
+
+  opacity: 0.5;
+
+  animation:
+    eventCloudTwo 32s linear infinite;
+}
+
+@keyframes eventCloudOne {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(100vw + 350px));
+  }
+}
+
+@keyframes eventCloudTwo {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100vw - 350px));
+  }
+}
+
+
+/* ========================================
+   COUNTDOWN
+======================================== */
+
+.countdown {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  color: #000000;
+}
+
+/* 4.4 — Contenido */
+.countdown__content {
+  position: relative;
+  z-index: 5;
+
+  width: min(100% - .1rem, 460px);
+
+  text-align: center;
+}
+
+/* 4.6 — El contador */
+.countdown__timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.45rem;
+}
+
+.countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Borde elegante con tono azulado/nocturno de dragón */
+  border: 1px solid rgba(88, 112, 168, 0.4);
+  border-radius: 10px;
+  /* Toque refinado estilo Apple */
+
+  min-width: 3rem;
+
+  /* Sombras sutiles y misteriosas tipo Furia Nocturna */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 0 10px rgba(30, 41, 59, 0.3);
+}
+
+.countdown__unit strong {
+
+  font-size: clamp(2rem, 10vw, 3.5rem);
+  font-weight: 500;
+
+  line-height: 1;
+
+  color: #000000;
+  text-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.countdown__unit span {
+  margin-top: 0.45rem;
+
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+
+  color: rgb(0, 0, 0);
+}
+
+.countdown__separator {
+  align-self: flex-start;
+
+  margin-top: 0.2rem;
+
+  font-size: 1.8rem;
+
+  color: rgb(0, 0, 0);
+}
+
+/* 4.7 — El dragón 🐉 */
+.countdown__dragon {
+  margin-top: 3rem;
+
+  font-size: 5rem;
+
+  filter:
+    drop-shadow(0 15px 15px rgba(0, 0, 0, 0.3));
+
+  animation:
+    countdownDragon 4s ease-in-out infinite;
+}
+
+@keyframes countdownDragon {
+
+  0%,
+  100% {
+    transform:
+      translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform:
+      translateY(-15px) rotate(3deg);
+  }
+}
+
+/* 4.8 — Mensaje */
+.countdown__message {
+  margin: 1.5rem 0 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 1.1rem;
+  font-style: italic;
+
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ✨ 4.9 — Partículas */
+.countdown::before,
+.countdown::after {
+  content: "";
+
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  box-shadow:
+    40px 80px rgba(255, 255, 255, 0.3),
+    120px 180px rgba(255, 255, 255, 0.5),
+    230px 100px rgba(255, 255, 255, 0.4),
+    310px 260px rgba(255, 255, 255, 0.3),
+    -100px 220px rgba(255, 255, 255, 0.5),
+    -180px 100px rgba(255, 255, 255, 0.3),
+    -240px 300px rgba(255, 255, 255, 0.4);
+
+  animation:
+    particleFloat 7s ease-in-out infinite alternate;
+}
+
+.countdown::after {
+  transform: translate(30px, 40px);
+
+  opacity: 0.5;
+
+  animation-delay: -3s;
+}
+
+@keyframes particleFloat {
+  from {
+    transform: translateY(10px);
+  }
+
+  to {
+    transform: translateY(-30px);
+  }
+}
+
+
+/* ========================================
+   WELCOME — DRAGON WORLD
+======================================== */
+
+.welcome {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  isolation: isolate;
+
+  background:
+    linear-gradient(180deg,
+      #9dbdce 0%,
+      #c9dce2 38%,
+      #e7eeee 70%,
+      #b9cbd0 100%);
+}
+
+
+/* ========================================
+   CIELO
+======================================== */
+
+.welcome__sky {
+  position: absolute;
+  inset: 0;
+  z-index: -5;
+
+  background:
+    radial-gradient(circle at 50% 25%,
+      rgba(255, 255, 255, 0.9),
+      transparent 35%),
+    radial-gradient(circle at 20% 60%,
+      rgba(255, 255, 255, 0.45),
+      transparent 30%),
+    radial-gradient(circle at 80% 65%,
+      rgba(255, 255, 255, 0.35),
+      transparent 30%);
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   CONTENIDO CENTRAL
+======================================== */
+
+.welcome__content {
+  position: relative;
+  z-index: 20;
+
+  width: min(100% - 2rem, 600px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding:
+    clamp(4rem, 10vh, 7rem) 1rem 5rem;
+
+  text-align: center;
+}
+
+
+/* ========================================
+   TEXTO SUPERIOR
+======================================== */
+
+.welcome__eyebrow {
+  margin: 0;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  letter-spacing: 0.35em;
+
+  color: rgba(23, 38, 49, 0.65);
+
+  animation:
+    welcomeFadeUp 1s ease both;
+}
+
+
+/* ========================================
+   NOMBRE
+======================================== */
+
+.welcome__name {
+  max-width: 90vw;
+
+  margin: 1.2rem 0 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(3rem,
+      12vw,
+      6rem);
+
+  font-weight: 500;
+
+  line-height: 0.95;
+
+  letter-spacing: -0.04em;
+
+  color: #172631;
+
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.75),
+    0 12px 30px rgba(23, 38, 49, 0.12);
+
+  animation:
+    welcomeFadeUp 1s 0.15s ease both;
+}
+
+
+/* ========================================
+   EDAD
+======================================== */
+
+.welcome__age {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+
+  margin-top: 1rem;
+
+  color: #38586a;
+
+  animation:
+    welcomeFadeUp 1s 0.3s ease both;
+}
+
+.welcome__age strong {
+
+  font-weight: 400;
+  font-size: 9rem;
+  line-height: 0.9;
+}
+
+.welcome__age span {
+
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+}
+
+
+/* ========================================
+   DIVISOR
+======================================== */
+
+.welcome__divider {
+  width: min(80%, 330px);
+
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  margin-top: 1.5rem;
+
+  animation:
+    welcomeFadeUp 1s 0.45s ease both;
+}
+
+.welcome__divider span:first-child,
+.welcome__divider span:last-child {
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(90deg,
+      transparent,
+      rgba(23, 38, 49, 0.35));
+}
+
+.welcome__divider span:last-child {
+  background:
+    linear-gradient(90deg,
+      rgba(23, 38, 49, 0.35),
+      transparent);
+}
+
+.welcome__dragon-symbol {
+  font-size: 0.9rem;
+  color: #38586a;
+}
+
+
+/* ========================================
+   BOTÓN
+======================================== */
+
+.welcome__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+
+  margin-top: 2rem;
+
+  min-width: 180px;
+
+  padding:
+    0.9rem 1.6rem;
+
+  border:
+    1px solid rgba(23, 38, 49, 0.3);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.38);
+
+  color: #172631;
+
+  text-decoration: none;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 10px 30px rgba(23, 38, 49, 0.08);
+
+  transition:
+    transform 250ms ease,
+    background 250ms ease,
+    box-shadow 250ms ease;
+
+  animation:
+    welcomeFadeUp 1s 0.6s ease both;
+}
+
+.welcome__button:hover {
+  transform: translateY(-4px);
+
+  background:
+    rgba(255, 255, 255, 0.72);
+
+  box-shadow:
+    0 15px 35px rgba(23, 38, 49, 0.15);
+}
+
+.welcome__arrow {
+  font-size: 1rem;
+
+  animation:
+    arrowBounce 1.5s ease-in-out infinite;
+}
+
+
+/* ========================================
+   DRAGONES
+======================================== */
+
+.welcome__dragons {
+  position: absolute;
+  inset: 0;
+
+  z-index: 5;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+/* Dragón base */
+
+.flying-dragon {
+  position: absolute;
+
+  display: block;
+
+  width: auto;
+
+  object-fit: contain;
+
+  user-select: none;
+
+  filter:
+    drop-shadow(0 15px 12px rgba(23, 38, 49, 0.18));
+}
+
+
+/* ========================================
+   DRAGÓN 1 — PRINCIPAL
+======================================== */
+
+.flying-dragon--one {
+  width: clamp(150px, 42vw, 360px);
+
+  top: 5%;
+  left: -15%;
+
+  animation:
+    dragonFlyOne 18s linear infinite;
+}
+
+
+/* ========================================
+   DRAGÓN 2
+======================================== */
+
+.flying-dragon--two {
+  width: clamp(90px, 25vw, 220px);
+
+  top: 18%;
+  right: -15%;
+
+  opacity: 0.8;
+
+  animation:
+    dragonFlyTwo 22s linear infinite;
+}
+
+
+/* ========================================
+   DRAGÓN 3
+======================================== */
+
+.flying-dragon--three {
+  width: clamp(65px, 18vw, 160px);
+
+  top: 48%;
+  left: -10%;
+
+  opacity: 0.55;
+
+  animation:
+    dragonFlyThree 26s linear infinite;
+}
+
+
+/* ========================================
+   DRAGÓN 4
+======================================== */
+
+.flying-dragon--four {
+  width: clamp(70px, 20vw, 170px);
+
+  bottom: 12%;
+  right: -15%;
+
+  opacity: 0.65;
+
+  animation:
+    dragonFlyFour 30s linear infinite;
+}
+
+
+/* ========================================
+   TRAYECTORIAS
+======================================== */
+
+@keyframes dragonFlyOne {
+
+  0% {
+    transform:
+      translateX(-10vw) translateY(20px) rotate(-5deg);
+  }
+
+  25% {
+    transform:
+      translateX(30vw) translateY(-20px) rotate(2deg);
+  }
+
+  50% {
+    transform:
+      translateX(70vw) translateY(15px) rotate(5deg);
+  }
+
+  75% {
+    transform:
+      translateX(105vw) translateY(-30px) rotate(0deg);
+  }
+
+  100% {
+    transform:
+      translateX(130vw) translateY(20px) rotate(-4deg);
+  }
+}
+
+
+@keyframes dragonFlyTwo {
+
+  0% {
+    transform:
+      translateX(20vw) translateY(30px) scale(0.9) rotate(4deg);
+  }
+
+  50% {
+    transform:
+      translateX(-55vw) translateY(-20px) scale(1) rotate(-3deg);
+  }
+
+  100% {
+    transform:
+      translateX(-120vw) translateY(20px) scale(0.9) rotate(4deg);
+  }
+}
+
+
+@keyframes dragonFlyThree {
+
+  0% {
+    transform:
+      translateX(-10vw) translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform:
+      translateX(55vw) translateY(-35px) rotate(4deg);
+  }
+
+  100% {
+    transform:
+      translateX(120vw) translateY(0) rotate(-3deg);
+  }
+}
+
+
+@keyframes dragonFlyFour {
+
+  0% {
+    transform:
+      translateX(15vw) translateY(15px) rotate(3deg);
+  }
+
+  50% {
+    transform:
+      translateX(-50vw) translateY(-30px) rotate(-4deg);
+  }
+
+  100% {
+    transform:
+      translateX(-120vw) translateY(15px) rotate(3deg);
+  }
+}
+
+
+/* ========================================
+   NUBES
+======================================== */
+
+.welcome__cloud {
+  position: absolute;
+
+  z-index: 3;
+
+  width: 240px;
+  height: 80px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.5);
+
+  filter: blur(12px);
+
+  pointer-events: none;
+}
+
+.welcome__cloud::before,
+.welcome__cloud::after {
+  content: "";
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: inherit;
+}
+
+.welcome__cloud::before {
+  width: 120px;
+  height: 120px;
+
+  left: 35px;
+  bottom: 5px;
+}
+
+.welcome__cloud::after {
+  width: 90px;
+  height: 90px;
+
+  right: 30px;
+  bottom: 8px;
+}
+
+.welcome__cloud--one {
+  top: 12%;
+  left: -120px;
+
+  animation:
+    cloudMoveOne 30s linear infinite;
+}
+
+.welcome__cloud--two {
+  top: 38%;
+  right: -150px;
+
+  opacity: 0.55;
+
+  transform: scale(0.8);
+
+  animation:
+    cloudMoveTwo 36s linear infinite;
+}
+
+.welcome__cloud--three {
+  bottom: 10%;
+  left: -180px;
+
+  opacity: 0.4;
+
+  transform: scale(1.3);
+
+  animation:
+    cloudMoveOne 42s linear infinite reverse;
+}
+
+
+/* ========================================
+   NIEBLA
+======================================== */
+
+.welcome__fog {
+  position: absolute;
+
+  z-index: 10;
+
+  bottom: -90px;
+  left: -10%;
+
+  width: 120%;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.65);
+
+  filter: blur(30px);
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   ANIMACIONES GENERALES
+======================================== */
+
+@keyframes cloudMoveOne {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform:
+      translateX(calc(100vw + 350px));
+  }
+}
+
+
+@keyframes cloudMoveTwo {
+
+  from {
+    transform:
+      translateX(0) scale(0.8);
+  }
+
+  to {
+    transform:
+      translateX(calc(-100vw - 350px)) scale(0.8);
+  }
+}
+
+
+@keyframes welcomeFadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes arrowBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+
+/* ========================================
+   REDUCIR MOVIMIENTO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .flying-dragon,
+  .welcome__cloud,
+  .welcome__button,
+  .welcome__name,
+  .welcome__eyebrow,
+  .welcome__age,
+  .welcome__divider {
+    animation: none;
+  }
+}

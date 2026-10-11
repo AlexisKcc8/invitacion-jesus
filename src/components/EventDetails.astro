@@ -1,0 +1,58 @@
+---
+import Countdown from "./Countdown.astro";
+---
+
+<section id="evento" class="event">
+  <div class="event__cloud event__cloud--one"></div>
+  <div class="event__cloud event__cloud--two"></div>
+
+  <!-- Dragones -->
+  <div class="welcome__dragons" aria-hidden="true">
+    <img
+      src="/dragons/dragon-4.gif"
+      alt=""
+      class="flying-dragon flying-dragon--one"
+    />
+
+    <img
+      src="/dragons/dragon-2.gif"
+      alt=""
+      class="flying-dragon flying-dragon--four"
+    />
+  </div>
+
+  <div class="event__content">
+    <p class="event__eyebrow">ESTÁS INVITADO</p>
+
+    <h2 class="event__title">A celebrar una gran aventura</h2>
+
+    <div class="event__divider">
+      <span></span>
+      🐉
+      <span></span>
+    </div>
+
+    <div class="event__details">
+      <div class="event__item">
+        <span class="event__icon">📅</span>
+
+        <div>
+          <span class="event__label">FECHA</span>
+          <strong class="text-4xl">Sábado 24 de octubre</strong>
+        </div>
+      </div>
+
+      <div class="event__item">
+        <span class="event__icon">🕡</span>
+
+        <div>
+          <span class="event__label">HORA</span>
+          <strong>6:30 PM</strong>
+        </div>
+      </div>
+
+      <h2 class="text-4xl text-center mt-12">Y solamente faltan</h2>
+      <Countdown />
+    </div>
+  </div>
+</section>

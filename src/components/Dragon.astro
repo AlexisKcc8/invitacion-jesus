@@ -1,0 +1,77 @@
+<div class="dragon-interactive" aria-label="Dragón interactivo">
+  <div class="dragon-glow"></div>
+
+  <div class="dragon-particles" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <svg class="dragon" viewBox="0 0 300 220" role="img" aria-hidden="true">
+    <!-- Alas -->
+    <path
+      class="dragon-wing dragon-wing--left"
+      d="M105 82 C65 25, 15 30, 12 78 C42 65, 65 72, 82 104 Z"></path>
+
+    <path
+      class="dragon-wing dragon-wing--right"
+      d="M195 82 C235 25, 285 30, 288 78 C258 65, 235 72, 218 104 Z"></path>
+
+    <!-- Cola -->
+    <path
+      class="dragon-tail"
+      d="M105 142 C60 145, 35 165, 48 190 C60 174, 76 168, 102 170"></path>
+
+    <!-- Cuerpo -->
+    <ellipse class="dragon-body" cx="150" cy="125" rx="62" ry="48"></ellipse>
+
+    <!-- Cabeza -->
+    <ellipse class="dragon-head" cx="150" cy="82" rx="48" ry="40"></ellipse>
+
+    <!-- Orejas/cuernos -->
+    <path class="dragon-ear" d="M120 54 L105 22 L135 45 Z"></path>
+
+    <path class="dragon-ear" d="M180 54 L195 22 L165 45 Z"></path>
+
+    <!-- Ojos -->
+    <ellipse class="dragon-eye" cx="133" cy="78" rx="7" ry="9"></ellipse>
+
+    <ellipse class="dragon-eye" cx="167" cy="78" rx="7" ry="9"></ellipse>
+
+    <!-- Hocico -->
+    <ellipse class="dragon-snout" cx="150" cy="98" rx="27" ry="16"></ellipse>
+
+    <!-- Nariz -->
+    <circle class="dragon-nostril" cx="140" cy="96" r="3"></circle>
+    <circle class="dragon-nostril" cx="160" cy="96" r="3"></circle>
+
+    <!-- Barriga -->
+    <ellipse class="dragon-belly" cx="150" cy="135" rx="35" ry="29"></ellipse>
+
+    <!-- Patas -->
+    <ellipse class="dragon-foot" cx="112" cy="164" rx="18" ry="10"></ellipse>
+    <ellipse class="dragon-foot" cx="188" cy="164" rx="18" ry="10"></ellipse>
+  </svg>
+
+  <div class="dragon-fire" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<script>
+  const dragon = document.querySelector(".dragon-interactive");
+
+  if (dragon) {
+    dragon.addEventListener("pointerdown", () => {
+      dragon.classList.add("dragon--active");
+
+      window.setTimeout(() => {
+        dragon.classList.remove("dragon--active");
+      }, 700);
+    });
+  }
+</script>
