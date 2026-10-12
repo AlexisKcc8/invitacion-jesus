@@ -64,14 +64,6 @@ button {
 ======================================== */
 
 .welcome {
-  position: relative;
-  min-height: 100svh;
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   background:
     radial-gradient(circle at 50% 30%,
       rgba(255, 255, 255, 0.9) 0%,
@@ -80,121 +72,12 @@ button {
       #b8ced8 0%,
       #dce8ed 48%,
       #edf1ef 100%);
-}
 
-.welcome__content {
-  position: relative;
-  z-index: 10;
-
-  width: min(100% - 2rem, 420px);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  text-align: center;
-
-  padding: 2rem 1rem 3rem;
-}
-
-.welcome__eyebrow {
-  margin: 0;
-
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-
-  color: rgba(23, 38, 49, 0.7);
-
-  animation: welcomeFadeUp 1s ease both;
+  border: 10px solid red
 }
 
 
-.welcome__name {
-  margin: 0;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: clamp(2.5rem, 11vw, 4.5rem);
-  font-weight: 500;
-  line-height: 0.95;
-
-  color: #172631;
-
-  text-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.6);
-
-  animation:
-    welcomeFadeUp 1s 0.35s ease both;
-}
-
-.welcome__age {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-
-  margin: 0.8rem 0 0;
-
-  color: #38586a;
-
-  font-size: 2rem;
-  font-weight: 600;
-
-  animation:
-    welcomeFadeUp 1s 0.5s ease both;
-}
-
-.welcome__age span {
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-}
-
-.welcome__button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-
-  margin-top: 2.5rem;
-  padding: 0.8rem 1.4rem;
-
-  border: 1px solid rgba(23, 38, 49, 0.25);
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.35);
-
-  color: #172631;
-
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-
-  text-decoration: none;
-
-  backdrop-filter: blur(8px);
-
-  transition:
-    transform 250ms ease,
-    background 250ms ease;
-
-  animation:
-    welcomeFadeUp 1s 0.7s ease both;
-}
-
-.welcome__button:hover {
-  transform: translateY(-3px);
-
-  background: rgba(255, 255, 255, 0.65);
-}
-
-.welcome__button span {
-  font-size: 1rem;
-
-  animation: arrowBounce 1.5s ease-in-out infinite;
-}
 
 .welcome__cloud {
   position: absolute;
@@ -808,13 +691,6 @@ button {
   position: relative;
   min-height: 100svh;
   overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  isolation: isolate;
-
   background:
     linear-gradient(180deg,
       #9dbdce 0%,
@@ -823,6 +699,66 @@ button {
       #b9cbd0 100%);
 }
 
+
+/* Contenedor del arbusto */
+.welcome__bush {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 130px;
+  /* Altura del arbusto en la pantalla */
+  pointer-events: none;
+  z-index: 3;
+  /* Ubicado encima del fondo pero debajo de la niebla o elementos flotantes */
+}
+
+.welcome__bush svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Animación de viento en capas con tiempos sutilmente distintos para mayor realismo */
+.bush-layer {
+  transform-origin: bottom center;
+}
+
+.bush-layer--back {
+  animation: bush-wind-back 5s ease-in-out infinite alternate;
+}
+
+.bush-layer--front {
+  animation: bush-wind-front 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes bush-wind-back {
+  0% {
+    transform: skewX(0deg) scaleY(1);
+  }
+
+  50% {
+    transform: skewX(-2deg) scaleY(0.98);
+  }
+
+  100% {
+    transform: skewX(2.5deg) scaleY(1.01);
+  }
+}
+
+@keyframes bush-wind-front {
+  0% {
+    transform: skewX(-1deg) scaleY(1);
+  }
+
+  50% {
+    transform: skewX(-4deg) scaleY(0.96);
+  }
+
+  100% {
+    transform: skewX(4.5deg) scaleY(1.02);
+  }
+}
 
 /* ========================================
    CIELO
@@ -902,10 +838,7 @@ button {
     "Times New Roman",
     serif;
 
-  font-size:
-    clamp(3rem,
-      12vw,
-      6rem);
+  font-size: 3rem;
 
   font-weight: 500;
 
@@ -927,33 +860,55 @@ button {
 /* ========================================
    EDAD
 ======================================== */
+/* Contenedor principal de la edad */
 
+/* Ajusta el contenedor para alinear los elementos de manera precisa con flexbox */
 .welcome__age {
   display: flex;
   align-items: baseline;
-  gap: 0.7rem;
+  /* Alinea las palabras a la línea base del número en lugar del centro */
+  justify-content: center;
+  gap: 12px;
 
-  margin-top: 1rem;
+  span {
+    font-size: 1rem;
+    letter-spacing: 0.25em;
+    color: rgba(23, 38, 49, 0.65);
+  }
 
-  color: #38586a;
+  /* Modifica el número para compensar el espacio interno de la fuente */
+  .welcome__age-number {
+    font-size: 6rem;
 
-  animation:
-    welcomeFadeUp 1s 0.3s ease both;
+    /* Reduce la altura de la caja de línea para recortar el espacio superior */
+    display: inline-block;
+    margin-top: -0.3em;
+    /* Empuja el número ligeramente hacia arriba para eliminar el sobrante */
+    background: linear-gradient(270deg, #43b505, #76ed1c, #00ffcc, #ff007f, #43b505);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: color-shift 6s ease infinite, pulse-glow 2s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 10px rgba(67, 181, 5, 0.5));
+  }
 }
 
-.welcome__age strong {
+/* Animación que rota los colores del gradiente */
+@keyframes color-shift {
+  0% {
+    background-position: 0% 50%;
+  }
 
-  font-weight: 400;
-  font-size: 9rem;
-  line-height: 0.9;
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.welcome__age span {
 
-  font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: 0.3em;
-}
 
 
 /* ========================================
@@ -1436,5 +1391,388 @@ button {
   .welcome__age,
   .welcome__divider {
     animation: none;
+  }
+}
+
+
+/* NUEVO CSS UTILIZADO */
+/* --- PREVENCIÓN DE DESBORDAMIENTO GLOBAL --- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* --- ESTILO APPLE + TONOS CAFÉ TIERRA --- */
+.apple-wrapper {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  background-color: #9b0c0c;
+  color: #2c221e;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.apple-wrapper *,
+.apple-wrapper *::before,
+.apple-wrapper *::after {
+  box-sizing: border-box;
+}
+
+/* --- MAIN CONTAINER SIN OVERFLOW --- */
+.apple-main {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* --- HERO SECTION CONTROLADA --- */
+.apple-hero {
+  width: 100%;
+  min-height: 100svh;
+  text-align: center;
+  background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 60%, #f5f5f7 100%);
+  padding: 2.5rem 1.25rem 4rem;
+  overflow: hidden;
+  /* Controla el desbordamiento de las nubes / niebla */
+  box-sizing: border-box;
+}
+
+/* Control de capas de fondo (niebla, cielo, nubes) */
+.welcome__sky,
+.welcome__cloud,
+.welcome__fog {
+  position: absolute;
+  pointer-events: none;
+  max-width: 100%;
+}
+
+.apple-hero__eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #a66844;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.apple-hero__title {
+  font-size: clamp(2.6rem,
+      10vw,
+      4.2rem);
+  /* Ajustado para prevenir desbordamiento lateral */
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 0.4rem;
+  color: #2c221e;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.apple-hero__age {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #8c7a70;
+  margin: 0 0 1.5rem;
+}
+
+/* --- EFECTO DE CAMBIO DE COLOR EN EL NÚMERO 4 --- */
+.apple-hero__age-number {
+  font-size: clamp(9rem, 8vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  display: inline-block;
+  background: linear-gradient(120deg,
+      #6b493b,
+      #a66844,
+      #d9a05b,
+      #a66844,
+      #6b493b);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ageColorShift 6s ease-in-out infinite;
+}
+
+@keyframes ageColorShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --- BOTONES CÁPSULA --- */
+.apple-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.25rem;
+  border-radius: 980px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.apple-btn--primary {
+  background-color: #6b493b;
+  color: #ffffff;
+}
+
+.apple-btn--outline {
+  background-color: transparent;
+  border: 1px solid #d4c8be;
+  color: #2c221e;
+}
+
+.apple-btn--full {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* --- SECCIONES Y CARDS --- */
+.apple-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 1.25rem 0;
+}
+
+.apple-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.apple-card--center {
+  text-align: center;
+}
+
+.apple-card--dark {
+  color: #1e1613;
+  text-align: center;
+}
+
+.apple-card__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #060606;
+  margin: 0;
+  display: block;
+  text-transform: uppercase;
+}
+
+.apple-card__label--gold {
+  color: #d9a05b;
+}
+
+/* --- DISEÑO DE FECHA --- */
+.date-stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5rem 0 0.2rem;
+  width: 100%;
+}
+
+.date-stamp__top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.25rem, 2vw, 0.8rem);
+  width: 100%;
+}
+
+.date-stamp__side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.date-stamp__line {
+  width: 100%;
+  height: 1.5px;
+  background-color: #2c221e;
+}
+
+.date-stamp__weekday {
+  font-size: clamp(0.65rem, 2.2vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2c221e;
+  padding: 0.1rem 0;
+  white-space: nowrap;
+}
+
+.date-stamp__day {
+  font-size: clamp(2.2rem, 7vw, 3.2rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #6b493b;
+  padding: 0 0.2rem;
+}
+
+.date-stamp__month {
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  font-weight: 600;
+  color: #2c221e;
+  letter-spacing: -0.01em;
+  padding: 0.1rem 0;
+  white-space: nowrap;
+}
+
+.date-stamp__time {
+  margin-top: 0.6rem;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  font-weight: 500;
+  color: #8c7a70;
+  letter-spacing: -0.01em;
+}
+
+/* --- RESTO DE CARDS --- */
+.apple-card__headline {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.2rem;
+  color: #2c221e;
+}
+
+.apple-card__desc {
+  font-size: 0.95rem;
+  color: #8c7a70;
+  margin: 0.4rem 0 0;
+  line-height: 1.5;
+}
+
+.apple-card__action-link {
+  margin-top: 1.2rem;
+}
+
+.apple-link {
+  color: #6b493b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.apple-link span {
+  font-size: 1.1rem;
+  line-height: 0;
+}
+
+/* --- COUNTDOWN APPLE STYLE --- */
+.apple-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.2rem, 2vw, 0.6rem);
+  width: 100%;
+}
+
+.apple-timer__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 40px;
+}
+
+.apple-timer__num {
+  font-size: clamp(3rem, 5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #d66b00;
+  font-variant-numeric: tabular-nums;
+}
+
+.apple-timer__label {
+  font-size: 0.65rem;
+  color: #282524;
+  margin-top: -0.2rem;
+}
+
+.apple-timer__colon {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #d9a05b;
+  margin-bottom: 0.8rem;
+}
+
+.apple-timer__msg {
+  font-size: 0.85rem;
+  color: #a89689;
+  margin: 0.5rem 0 0;
+}
+
+/* --- RSVP --- */
+.apple-rsvp-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* --- FOOTER --- */
+.apple-footer {
+  text-align: center;
+  padding: 2rem 1.25rem 3rem;
+  color: #8c7a70;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* --- DESKTOP HOVERS --- */
+@media (min-width: 40rem) {
+  .apple-btn--primary:hover {
+    background-color: #54382c;
+  }
+
+  .apple-btn--outline:hover {
+    background-color: #ebe5df;
+  }
+
+  .apple-link:hover {
+    text-decoration: underline;
   }
 }

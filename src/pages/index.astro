@@ -1,10 +1,10 @@
 ---
 import "../styles/global.css";
+
 import Welcome from "../components/Welcome.astro";
-import EventDetails from "../components/EventDetails.astro";
-import Countdown from "../components/Countdown.astro";
 import Confirmation from "../components/Confirmation.astro";
 import MusicToggle from "../components/MusicToggle.astro";
+import OurLocation from "../components/OurLocation.astro";
 ---
 
 <!doctype html>
@@ -24,10 +24,25 @@ import MusicToggle from "../components/MusicToggle.astro";
   <body>
     <main>
       <Welcome />
-      <EventDetails />
+      <OurLocation />
       <Confirmation />
     </main>
 
     <MusicToggle />
+
+    <script>
+      import AOS from "aos";
+      import "aos/dist/aos.css";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        AOS.init({
+          duration: 800,
+          once: true,
+          startEvent: "DOMContentLoaded",
+        });
+
+        AOS.refreshHard();
+      });
+    </script>
   </body>
 </html>

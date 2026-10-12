@@ -1,78 +1,65 @@
-<section class="countdown" id="contador">
-  <div class="countdown__stars"></div>
+<!-- Cuenta Regresiva (Countdown Grid) -->
+<section class="mt-6">
+  <span class="apple-card__label apple-card__label--gold">SOLAMENTE FALTAN</span
+  >
 
-  <div class="countdown__content">
-    <div
-      class="countdown__timer"
-      aria-label="Cuenta regresiva para el cumpleaños"
-    >
-      <div class="countdown__unit p-6">
-        <strong id="days">00</strong>
-        <span>DÍAS</span>
-      </div>
-
-      <div class="countdown__separator">:</div>
-
-      <div class="countdown__unit p-6">
-        <strong id="hours">00</strong>
-        <span>HORAS</span>
-      </div>
-
-      <div class="countdown__separator">:</div>
-
-      <div class="countdown__unit p-6">
-        <strong id="minutes">00</strong>
-        <span>MIN</span>
-      </div>
-
-      <div class="countdown__separator">:</div>
-
-      <div class="countdown__unit p-6">
-        <strong id="seconds">00</strong>
-        <span>SEG</span>
-      </div>
+  <div class="apple-timer" aria-label="Cuenta regresiva">
+    <div class="apple-timer__unit">
+      <span id="invite-days" class="apple-timer__num">00</span>
+      <span class="apple-timer__label">días</span>
     </div>
-
-    <p class="text-black mt-8">¡Prepárate para la aventura!</p>
+    <span class="apple-timer__colon">:</span>
+    <div class="apple-timer__unit">
+      <span id="invite-hours" class="apple-timer__num">00</span>
+      <span class="apple-timer__label">hrs</span>
+    </div>
+    <span class="apple-timer__colon">:</span>
+    <div class="apple-timer__unit">
+      <span id="invite-minutes" class="apple-timer__num">00</span>
+      <span class="apple-timer__label">min</span>
+    </div>
+    <span class="apple-timer__colon">:</span>
+    <div class="apple-timer__unit">
+      <span id="invite-seconds" class="apple-timer__num">00</span>
+      <span class="apple-timer__label">seg</span>
+    </div>
   </div>
 </section>
-
+<!-- SCRIPT DE CUENTA REGRESIVA -->
 <script>
-  const eventDate = new Date("2026-10-24T18:30:00-06:00").getTime();
+  const targetDate = new Date("2026-10-24T18:30:00-06:00").getTime();
 
-  const daysElement = document.querySelector("#days");
-  const hoursElement = document.querySelector("#hours");
-  const minutesElement = document.querySelector("#minutes");
-  const secondsElement = document.querySelector("#seconds");
+  const daysEl = document.querySelector("#invite-days");
+  const hoursEl = document.querySelector("#invite-hours");
+  const minutesEl = document.querySelector("#invite-minutes");
+  const secondsEl = document.querySelector("#invite-seconds");
+  const messageEl = document.querySelector("#invite-countdown-message");
 
-  function updateCountdown() {
-    const now = Date.now();
-    const difference = eventDate - now;
+  function updateInvitationCountdown() {
+    const remaining = targetDate - Date.now();
 
-    if (difference <= 0) {
-      daysElement.textContent = "00";
-      hoursElement.textContent = "00";
-      minutesElement.textContent = "00";
-      secondsElement.textContent = "00";
+    if (remaining <= 0) {
+      daysEl.textContent = "00";
+      hoursEl.textContent = "00";
+      minutesEl.textContent = "00";
+      secondsEl.textContent = "00";
+      messageEl.textContent = "¡Hoy comienza la aventura!";
 
+      window.clearInterval(countdownInterval);
       return;
     }
 
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const days = Math.floor(remaining / 86400000);
+    const hours = Math.floor((remaining / 3600000) % 24);
+    const minutes = Math.floor((remaining / 60000) % 60);
+    const seconds = Math.floor((remaining / 1000) % 60);
 
-    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-
-    const minutes = Math.floor((difference / (1000 * 60)) % 60);
-
-    const seconds = Math.floor((difference / 1000) % 60);
-
-    daysElement.textContent = String(days).padStart(2, "0");
-    hoursElement.textContent = String(hours).padStart(2, "0");
-    minutesElement.textContent = String(minutes).padStart(2, "0");
-    secondsElement.textContent = String(seconds).padStart(2, "0");
+    daysEl.textContent = String(days).padStart(2, "0");
+    hoursEl.textContent = String(hours).padStart(2, "0");
+    minutesEl.textContent = String(minutes).padStart(2, "0");
+    secondsEl.textContent = String(seconds).padStart(2, "0");
   }
 
-  updateCountdown();
-
-  setInterval(updateCountdown, 1000);
+  updateInvitationCountdown();
+  const countdownInterval = window.setInterval(updateInvitationCountdown, 1000);
 </script>
