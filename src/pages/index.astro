@@ -1,10 +1,12 @@
 ---
 import "../styles/global.css";
 
-import Welcome from "../components/Welcome.astro";
+import Welcome_home from "../components/Welcome_home.astro";
 import Confirmation from "../components/Confirmation.astro";
 import MusicToggle from "../components/MusicToggle.astro";
 import OurLocation from "../components/OurLocation.astro";
+import Invitation from "../components/Invitation.astro";
+import InspirationCarousel from "../components/InspirationCarousel.astro";
 ---
 
 <!doctype html>
@@ -23,8 +25,10 @@ import OurLocation from "../components/OurLocation.astro";
 
   <body>
     <main>
-      <Welcome />
+      <Welcome_home />
+      <Invitation />
       <OurLocation />
+      <InspirationCarousel />
       <Confirmation />
     </main>
 

@@ -1,3 +1,7 @@
+---
+import Brujula from "./Brujula.astro";
+---
+
 <section
   class="py-10 px-6 max-w-5xl mx-auto bg-[#181a1b] text-[#e8e4dc] relative overflow-hidden font-serif"
 >
@@ -8,25 +12,7 @@
       alt="Imagen de chimuelo volando"
       class="absolute -top-10 -right-10 w-44 h-44 object-cover opacity-15"
     />
-    <div
-      class="inline-block p-2 rounded-full border border-amber-600/30 bg-amber-950/20 mb-3"
-      data-aos="fade-in"
-    >
-      <svg
-        class="w-6 h-6 text-amber-500"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-          d="M12 21a9 9 0 100-18 9 9 0 000 18z M12 3v18 M3 12h18 M15.5 8.5L8.5 15.5"
-        ></path>
-      </svg>
-    </div>
-
+    <Brujula />
     <h2
       class="text-3xl phone-lg:text-4xl font-normal tracking-wider text-amber-100 text-center mb-3"
       data-aos="fade-in"

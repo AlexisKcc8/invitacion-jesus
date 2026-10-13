@@ -1,0 +1,45 @@
+<div
+  class="inline-block p-2 rounded-full border border-amber-600/30 bg-amber-950/20 mb-3"
+  data-aos="fade-in"
+>
+  <svg
+    class="w-6 h-6 text-amber-500"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <!-- Círculo exterior e interior de la brújula -->
+    <circle cx="12" cy="12" r="9" stroke-width="1.5"></circle>
+    <circle
+      cx="12"
+      cy="12"
+      r="7.5"
+      stroke-width="1"
+      stroke-dasharray="1 1.5"
+      opacity="0.6"></circle>
+
+    <!-- Marcas cardinales (N, S, E, O) -->
+    <path
+      stroke-linecap="round"
+      stroke-width="1.5"
+      d="M12 3v1.5 M12 19.5V21 M3 12h1.5 M19.5 12H21"></path>
+
+    <!-- Aguja con animación de giro suave -->
+    <g class="compass-needle">
+      <!-- Punta Norte (Rellena) -->
+      <path
+        fill="currentColor"
+        stroke-width="1"
+        d="M12 12L10.5 12L12 5L13.5 12Z"></path>
+      <!-- Punta Sur (Línea) -->
+      <path
+        fill="none"
+        stroke-width="1.2"
+        d="M12 12L10.5 12L12 19L13.5 12Z"
+        opacity="0.7"></path>
+    </g>
+
+    <!-- Punto central -->
+    <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
+  </svg>
+</div>

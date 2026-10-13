@@ -1,0 +1,278 @@
+---
+import Countdown from "./Countdown.astro";
+---
+
+<section class="container-invitation relative" id="invitation">
+  <img
+    src="/images/vikingos/hipo-chimuelo.png"
+    alt="Imagen de chimuelo volando"
+    class="absolute left-0 right-0 -top-4 m-auto w-28 h-28 object-cover"
+    data-aos="fade-up"
+  />
+  <!-- Nubes -->
+  <div class="welcome__cloud welcome__cloud--one"></div>
+  <div class="welcome__cloud welcome__cloud--two"></div>
+  <div class="welcome__cloud welcome__cloud--three"></div>
+  <img
+    src="/images/vikingos/dragon-team.png"
+    alt="Imagen de chimuelo volando"
+    class="absolute top-0 left-0 right-0 bottom-0 m-auto w-96 h-96 object-cover opacity-10"
+  />
+  <div class="invitation-content">
+    <h2 class="invitation-title" data-aos="fade-up">
+      ¡Un pequeño vikingo está listo para <span class="highlight"
+        >despegar!</span
+      >
+    </h2>
+
+    <div class="invitation-text">
+      <p class="intro-paragraph" data-aos="fade-in">
+        Con mucha alegría queremos invitarte a compartir un día lleno de <strong
+          >magia</strong
+        >, <strong>risas</strong> y <strong>diversión</strong>.
+      </p>
+
+      <!-- Fecha y Hora directa sin contenedor/tarjeta -->
+      <div class="date-section" data-aos="fade-in">
+        <span class="apple-card__label" data-aos="fade-up">
+          Un día especial, un recuerdo para toda la vida.
+        </span>
+
+        <div class="date-stamp">
+          <div class="date-stamp__top">
+            <!-- Bloque Izquierdo: Día de la semana -->
+            <div class="date-stamp__side">
+              <span class="date-stamp__line"></span>
+              <span class="date-stamp__weekday">SÁBADO</span>
+              <span class="date-stamp__line"></span>
+            </div>
+
+            <!-- Centro: Número del día -->
+            <div class="date-stamp__day">24</div>
+
+            <!-- Bloque Derecho: Mes -->
+            <div class="date-stamp__side">
+              <span class="date-stamp__line"></span>
+              <span class="date-stamp__month">Octubre</span>
+              <span class="date-stamp__line"></span>
+            </div>
+          </div>
+
+          <!-- Hora centrada abajo -->
+          <div class="date-stamp__time" data-aos="fade-in">6:30 P. M.</div>
+        </div>
+      </div>
+
+      <div class="countdown-wrapper" data-aos="fade-in">
+        <Countdown />
+      </div>
+    </div>
+  </div>
+  <img
+    src="/images/vikingos/hipo.png"
+    alt="Imagen de chimuelo volando"
+    class="absolute left-0 right-0 -bottom-28 m-auto w-60 h-60 object-cover"
+    data-aos="fade-up"
+  />
+</section>
+
+<style>
+  /* 
+    ============================================================
+    ESTILOS MOBILE-FIRST (Lienzo Abierto Estilo Apple)
+    ============================================================
+  */
+  .container-invitation {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+
+    /* El lienzo completo es el difuminado radial:
+       Blanco puro en el centro que se va desvaneciendo delicadamente 
+       hacia un tono café tierra muy suave en los bordes de la pantalla */
+    background: radial-gradient(
+      circle at center,
+      #ffffff 0%,
+      #fcfaf7 45%,
+      #f2e8dd 75%,
+      #dbc8b5 100%
+    );
+
+    /* Tipografía ultrasana y limpia estilo Apple */
+    font-family:
+      -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+      "Segoe UI", Roboto, sans-serif;
+    color: #2b2118;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* El contenido flota libremente sin ningún tipo de tarjeta, fondo ni bordes */
+  .invitation-content {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Título limpio con fuente estilizada pero moderna */
+  .invitation-title {
+    font-family:
+      -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #221810;
+    margin-bottom: 1.8rem;
+    letter-spacing: -0.02em;
+  }
+
+  .invitation-title .highlight {
+    color: #b85d1e; /* Color terracota / tierra destacado */
+    font-weight: 700;
+  }
+
+  .invitation-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .intro-paragraph,
+  .closing-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #55463a;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .invitation-text strong {
+    color: #b85d1e;
+    font-weight: 600;
+  }
+
+  /* ============================================================
+     SECCIÓN DE FECHA Y HORA (FLOTANTE LIBRE)
+     ============================================================ */
+  .date-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .apple-card__label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #8c735d;
+  }
+
+  .date-stamp {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .date-stamp__top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .date-stamp__side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .date-stamp__line {
+    width: 100%;
+    height: 1px;
+    background: rgba(147, 71, 17, 0.873);
+  }
+
+  .date-stamp__weekday,
+  .date-stamp__month {
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #813800;
+  }
+
+  .date-stamp__day {
+    font-family:
+      -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #221810;
+    letter-spacing: -0.03em;
+  }
+
+  .date-stamp__time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #b85d1e;
+  }
+
+  .countdown-wrapper {
+    width: 100%;
+  }
+
+  /* 
+    ============================================================
+    MEDIA QUERIES (Tablets y Desktop)
+    ============================================================
+  */
+  @media (min-width: 768px) {
+    .container-invitation {
+      padding: 5rem 2rem;
+    }
+
+    .invitation-content {
+      max-width: 600px;
+    }
+
+    .invitation-title {
+      font-size: 2.6rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .intro-paragraph,
+    .closing-paragraph {
+      font-size: 1.25rem;
+    }
+
+    .apple-card__label {
+      font-size: 0.95rem;
+    }
+
+    .date-stamp__day {
+      font-size: 4.8rem;
+    }
+
+    .date-stamp__weekday,
+    .date-stamp__month {
+      font-size: 1rem;
+    }
+
+    .date-stamp__time {
+      font-size: 1.25rem;
+    }
+  }
+</style>

@@ -72,8 +72,6 @@ button {
       #b8ced8 0%,
       #dce8ed 48%,
       #edf1ef 100%);
-
-  border: 10px solid red
 }
 
 
@@ -689,6 +687,9 @@ button {
 
 .welcome {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100svh;
   overflow: hidden;
   background:
@@ -790,12 +791,11 @@ button {
 
 .welcome__content {
   position: relative;
-  z-index: 20;
-
   width: min(100% - 2rem, 600px);
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   padding:
@@ -878,7 +878,7 @@ button {
 
   /* Modifica el número para compensar el espacio interno de la fuente */
   .welcome__age-number {
-    font-size: 6rem;
+    font-size: 9rem;
 
     /* Reduce la altura de la caja de línea para recortar el espacio superior */
     display: inline-block;
@@ -922,7 +922,7 @@ button {
   align-items: center;
   gap: 0.8rem;
 
-  margin-top: 1.5rem;
+
 
   animation:
     welcomeFadeUp 1s 0.45s ease both;
@@ -1588,17 +1588,16 @@ body {
 }
 
 .apple-card__label {
-  font-size: 0.7rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: #060606;
   margin: 0;
   display: block;
-  text-transform: uppercase;
 }
 
 .apple-card__label--gold {
-  color: #d9a05b;
+  color: #5f3400d1;
 }
 
 /* --- DISEÑO DE FECHA --- */
@@ -1722,12 +1721,12 @@ body {
   font-size: clamp(3rem, 5vw, 2rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: #d66b00;
+  color: #703800;
   font-variant-numeric: tabular-nums;
 }
 
 .apple-timer__label {
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   color: #282524;
   margin-top: -0.2rem;
 }
@@ -1774,5 +1773,263 @@ body {
 
   .apple-link:hover {
     text-decoration: underline;
+  }
+}
+
+/* Animación de giro para la aguja */
+.compass-needle {
+  transform-origin: 12px 12px;
+  animation: spin-compass 12s linear infinite;
+}
+
+@keyframes spin-compass {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 
+    ============================================================
+    ESTILOS MOBILE-FIRST (Apple / Pergamino Vikingo)
+    ============================================================
+  */
+.container-carousel {
+  width: 100%;
+  padding: 3rem 1.25rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Fondo en degradado sutil arena/café claro */
+  background: radial-gradient(circle at center,
+      #ffffff 0%,
+      #fcfaf7 45%,
+      #f2e8dd 75%,
+      #dbc8b5 100%);
+
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Segoe UI", Roboto, sans-serif;
+  color: #2b2118;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.carousel-content {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Badge / Tag superior */
+.badge-tag {
+  background: rgba(184, 93, 30, 0.08);
+  border: 1px solid rgba(184, 93, 30, 0.2);
+  border-radius: 30px;
+  padding: 0.4rem 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.badge-tag span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #b85d1e;
+}
+
+/* Título Principal */
+.carousel-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #221810;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.carousel-title .highlight {
+  color: #b85d1e;
+}
+
+/* Descripción */
+.carousel-description {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #55463a;
+  margin-bottom: 2.5rem;
+  max-width: 460px;
+}
+
+/* 
+    ============================================================
+    ESCENARIO 3D DE PERGAMINOS (PARCHMENT STAGE)
+    ============================================================
+  */
+.parchment-stage {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+/* Estructura base de cada pergamino */
+.parchment-card {
+  position: absolute;
+  width: 170px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s ease-in-out;
+  box-sizing: border-box;
+}
+
+/* Rodillos de madera superior e inferior del pergamino */
+.parchment-roller {
+  width: 106%;
+  height: 14px;
+  background: linear-gradient(90deg, #5c3a21 0%, #a67c52 50%, #5c3a21 100%);
+  border-radius: 7px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+  position: relative;
+}
+
+.roller-top {
+  margin-bottom: -4px;
+}
+
+.roller-bottom {
+  margin-top: -4px;
+}
+
+/* Cuerpo del pergamino (Lienzo) */
+.parchment-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-left: 2px solid #bda285;
+  border-right: 2px solid #bda285;
+  background: #f4eae0;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(60, 40, 20, 0.15);
+}
+
+.parchment-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.15) contrast(1.02);
+}
+
+/* Overlay de texto con degradado estilo pergamino */
+.parchment-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 0.6rem 0.8rem;
+  background: linear-gradient(to top,
+      rgba(43, 33, 24, 0.9) 0%,
+      rgba(43, 33, 24, 0.4) 60%,
+      transparent 100%);
+  color: #f7ede2;
+  text-align: center;
+}
+
+.parchment-overlay span {
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #f5e4d0;
+}
+
+/* 
+    POSICIONAMIENTO Y ROTACIÓN 3D
+  */
+
+/* Pergamino Izquierdo */
+.parchment-left {
+  transform: translateX(-55%) scale(0.85) rotateY(18deg) rotateZ(-4deg);
+  z-index: 1;
+  opacity: 0.88;
+}
+
+/* Pergamino Central */
+.parchment-center {
+  transform: translateX(0) scale(1) translateZ(30px);
+  z-index: 3;
+  box-shadow:
+    0 20px 40px rgba(184, 93, 30, 0.2),
+    0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* Pergamino Derecho */
+.parchment-right {
+  transform: translateX(55%) scale(0.85) rotateY(-18deg) rotateZ(4deg);
+  z-index: 1;
+  opacity: 0.88;
+}
+
+/* 
+    ============================================================
+    MEDIA QUERIES (Tablets y Escritorio)
+    ============================================================
+  */
+@media (min-width: 600px) {
+  .parchment-stage {
+    height: 480px;
+  }
+
+  .parchment-card {
+    width: 210px;
+    height: 410px;
+  }
+
+  .parchment-roller {
+    height: 18px;
+    border-radius: 9px;
+  }
+
+  .parchment-left {
+    transform: translateX(-70%) scale(0.88) rotateY(16deg) rotateZ(-3deg);
+  }
+
+  .parchment-right {
+    transform: translateX(70%) scale(0.88) rotateY(-16deg) rotateZ(3deg);
+  }
+
+  .parchment-overlay span {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-carousel {
+    padding: 5rem 2rem;
+  }
+
+  .carousel-content {
+    max-width: 750px;
+  }
+
+  .carousel-title {
+    font-size: 2.5rem;
+  }
+
+  .carousel-description {
+    font-size: 1.2rem;
   }
 }

@@ -1,0 +1,85 @@
+---
+import Brujula from "./Brujula.astro";
+
+// Títulos sencillos y cariñosos para un convivio familiar
+const slides = [
+  {
+    id: 1,
+    title: "Comida Rica en Familia", // Muy cercano y hogareño
+    image: "/images/img-1.jpg",
+    alt: "Comida familiar",
+  },
+  {
+    id: 2,
+    title: "Risas y Juegos Juntos", // Enfocado en pasar tiempo de calidad
+    image: "/images/img-3.jpg",
+    alt: "Diversión en familia",
+  },
+  {
+    id: 3,
+    title: "Pastel y Buenos Momentos", // Un clásico familiar
+    image: "/images/img-2.webp",
+    alt: "Momento del pastel",
+  },
+];
+---
+
+<section class="container-carousel" id="carousel">
+  <div class="carousel-content">
+    <Brujula />
+    <!-- Tag superior / Badge -->
+    <div class="badge-tag" data-aos="fade-in">
+      <span>¡NO TE LO PIERDAS!</span>
+    </div>
+
+    <!-- Título principal -->
+    <h2 class="carousel-title" data-aos="fade-up">
+      Prepárate para una <span class="highlight">aventura inolvidable</span>
+    </h2>
+
+    <!-- Subtítulo -->
+    <p class="carousel-description" data-aos="fade-in">
+      Tu compañía hará que esta celebración sea todavía más especial. ¡La
+      diversión está garantizada!
+    </p>
+
+    <!-- Escenario 3D de Pergaminos Vikingos -->
+    <div class="parchment-stage" data-aos="fade-in">
+      <!-- Pergamino Izquierdo -->
+      <div class="parchment-card parchment-left">
+        <div class="parchment-roller roller-top"></div>
+        <div class="parchment-body">
+          <img src={slides[0].image} alt={slides[0].alt} loading="lazy" />
+          <div class="parchment-overlay">
+            <span>{slides[0].title}</span>
+          </div>
+        </div>
+        <div class="parchment-roller roller-bottom"></div>
+      </div>
+
+      <!-- Pergamino Central (Destacado) -->
+      <div class="parchment-card parchment-center">
+        <div class="parchment-roller roller-top"></div>
+        <div class="parchment-body">
+          <img src={slides[1].image} alt={slides[1].alt} loading="lazy" />
+          <div class="parchment-overlay">
+            <span>{slides[1].title}</span>
+          </div>
+        </div>
+        <div class="parchment-roller roller-bottom"></div>
+      </div>
+
+      <!-- Pergamino Derecho -->
+      <div class="parchment-card parchment-right">
+        <div class="parchment-roller roller-top"></div>
+        <div class="parchment-body">
+          <img src={slides[2].image} alt={slides[2].alt} loading="lazy" />
+          <div class="parchment-overlay">
+            <span>{slides[2].title}</span>
+          </div>
+        </div>
+        <div class="parchment-roller roller-bottom"></div>
+      </div>
+    </div>
+  </div>
+</section>
